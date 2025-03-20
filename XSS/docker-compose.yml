@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  vulnerable_app:
+    build: ./web_app
+    ports:
+      - "5000:5000"  # Expose the Flask app on port 5000
+
+  firewall:
+    build: ./nginx_proxy
+    ports:
+      - "80:80"  # Expose the NGINX firewall on port 80
+    depends_on:
+      - vulnerable_app  # Ensure the vulnerable app starts before the firewall
+
