@@ -1,0 +1,12 @@
+version: "3"
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./app:/app  # Ensure the entire app directory is shared
+      - ./app/database.db:/app/database.db  # Explicitly mount the DB file
+    environment:
+      - FLASK_ENV=development
+
